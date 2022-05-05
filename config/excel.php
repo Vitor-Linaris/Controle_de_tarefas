@@ -125,7 +125,7 @@ return [
             'delimiter'        => null,
             'enclosure'        => '"',
             'escape_character' => '\\',
-            'contiguous'       => false,
+            'contiguous'       => true,
             'input_encoding'   => 'UTF-8',
         ],
 

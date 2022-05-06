@@ -8,6 +8,7 @@ use App\Models\Tarefa;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\TarefasExport;
+use PDF;
 
 class TarefaController extends Controller
 {
@@ -130,5 +131,12 @@ class TarefaController extends Controller
 
 
         return Excel::download(new TarefasExport, $nome_arquivo);
+    }
+
+    public function exportar() 
+    {
+        $tarefas = auth()->user()->tarefas()->get();
+        $pdf = PDF::loadView('tarefa.pdf', ['tarefas' => $tarefas]);
+        return $pdf->download('lista_de_tarefas.pdf');
     }
 }
